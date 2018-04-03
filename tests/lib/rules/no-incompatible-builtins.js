@@ -26,28 +26,18 @@ var ruleTester = new RuleTester()
 ruleTester.run('no-incompatible-builtins', rule, {
   valid: [
     // give me some code that won't trigger a warning
-    "import $ from 'jquery';",
-    "import { filter } from 'lodash/fp'",
+    '[1, 2, 3].forEach(i => console.log(i))',
   ],
 
   invalid: [
     {
-      code: "import _ from 'lodash';",
+      code: '[1, 2, 3].includes(i => i === 3)',
       errors: [
         {
-          message: 'Prefer importing single functions over a full FP library',
-          type: 'ImportDeclaration',
+          message: 'Using incompatible method `includes`',
+          type: 'MemberExpression',
         },
       ],
     },
-    /*
-        {
-            code: "'Hello world'.includes('world')",
-            errors: [{
-                message: "Fill me in.",
-                type: "Me too"
-            }]
-        }
-        */
   ],
 })
