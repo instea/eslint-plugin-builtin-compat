@@ -1,0 +1,15 @@
+{
+  "extends": ["eslint:recommended"],
+  "plugins": ["prettier"],
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "strict": 0,
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "comma-dangle": ["error", "always-multiline"],
+    "semi": ["error", "never"],
+    "prettier/prettier": "error",
+    "no-console": "off"
+  }
+}

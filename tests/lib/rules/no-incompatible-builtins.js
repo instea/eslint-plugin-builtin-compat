@@ -2,46 +2,45 @@
  * @fileoverview Warns about incompatible built-in usage
  * @author instea.co
  */
-"use strict";
+'use strict'
 
 //------------------------------------------------------------------------------
 // Requirements
 //------------------------------------------------------------------------------
 
-var rule = require("../../../lib/rules/no-incompatible-builtins"),
-
-    RuleTester = require("eslint").RuleTester;
+var rule = require('../../../lib/rules/no-incompatible-builtins'),
+  RuleTester = require('eslint').RuleTester
 
 RuleTester.setDefaultConfig({
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module"
-  }
-});
-
+    sourceType: 'module',
+  },
+})
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
-ruleTester.run("no-incompatible-builtins", rule, {
+var ruleTester = new RuleTester()
+ruleTester.run('no-incompatible-builtins', rule, {
+  valid: [
+    // give me some code that won't trigger a warning
+    "import $ from 'jquery';",
+    "import { filter } from 'lodash/fp'",
+  ],
 
-    valid: [
-        // give me some code that won't trigger a warning
-      "import $ from 'jquery';",
-      "import { filter } from 'lodash/fp'"
-    ],
-
-    invalid: [
+  invalid: [
+    {
+      code: "import _ from 'lodash';",
+      errors: [
         {
-            code: "import _ from 'lodash';",
-            errors: [{
-              message: 'Prefer importing single functions over a full FP library',
-              type: 'ImportDeclaration'
-            }]
-        }
-      /*
+          message: 'Prefer importing single functions over a full FP library',
+          type: 'ImportDeclaration',
+        },
+      ],
+    },
+    /*
         {
             code: "'Hello world'.includes('world')",
             errors: [{
@@ -50,5 +49,5 @@ ruleTester.run("no-incompatible-builtins", rule, {
             }]
         }
         */
-    ]
-});
+  ],
+})

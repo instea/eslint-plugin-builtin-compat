@@ -2,14 +2,15 @@
   "name": "eslint-plugin-builtin-compat",
   "version": "0.0.0",
   "description": "Checks built-in objects compatibility",
-  "keywords": [
-    "eslint",
-    "eslintplugin",
-    "eslint-plugin"
-  ],
+  "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
   "author": "instea.co",
   "main": "lib/index.js",
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
+  },
   "scripts": {
+    "lint": "eslint lib tests",
+    "precommit": "lint-staged",
     "test": "mocha tests --recursive"
   },
   "dependencies": {
@@ -17,7 +18,11 @@
   },
   "devDependencies": {
     "eslint": "~3.9.1",
-    "mocha": "^3.1.2"
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.2",
+    "mocha": "^3.1.2",
+    "prettier": "^1.11.1"
   },
   "engines": {
     "node": ">=0.10.0"
