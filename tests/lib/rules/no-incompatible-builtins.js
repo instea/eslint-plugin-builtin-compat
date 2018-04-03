@@ -16,6 +16,9 @@ RuleTester.setDefaultConfig({
     ecmaVersion: 6,
     sourceType: 'module',
   },
+  settings: {
+    browsers: ['last 1 versions', 'not ie <= 8'],
+  },
 })
 
 //------------------------------------------------------------------------------
