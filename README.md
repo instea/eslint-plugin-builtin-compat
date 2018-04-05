@@ -1,6 +1,7 @@
 # eslint-plugin-builtin-compat
 
-Checks built-in objects compatibility
+Checks built-in methods compatibility.
+It uses [browser-compat-data](https://github.com/mdn/browser-compat-data) to determine incompatible method calls.
 
 ## Installation
 
@@ -24,28 +25,38 @@ Add `builtin-compat` to the plugins section of your `.eslintrc` configuration fi
 
 ```json
 {
-    "plugins": [
-        "builtin-compat"
-    ]
+  "plugins": ["builtin-compat"]
 }
 ```
-
 
 Then configure the rules you want to use under the rules section.
 
 ```json
 {
-    "rules": {
-        "builtin-compat/rule-name": 2
-    }
+  "rules": {
+    "builtin-compat/no-incompatible-builtins": 2
+  }
 }
 ```
 
-## Supported Rules
+You can ignore certain built-ins, usually after adding a polyfill:
 
-* Fill in provided rules here
+```json
+{
+  "settings": {
+    "builtin-compat-ignore": ["assign", "startsWith"]
+  }
+}
+```
 
+Configure supported browsers in `package.json` (see [browserslist](https://github.com/browserslist/browserslist)):
 
+```json
+{
+  "browserslist": ["last 1 versions", "not ie <= 8"]
+}
+```
 
+## Contributing
 
-
+Contributions are welcome! Just open an issues with any idea or pull-request if it is no-brainer. Make sure all tests and linting rules pass.
