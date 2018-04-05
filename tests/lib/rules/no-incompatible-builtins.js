@@ -17,7 +17,7 @@ RuleTester.setDefaultConfig({
     sourceType: 'module',
   },
   settings: {
-    browsers: ['last 1 versions', 'not ie <= 8'],
+    browsers: ['last 3 versions', 'safari >= 8', 'not ie <= 8'],
   },
 })
 
@@ -37,7 +37,18 @@ ruleTester.run('no-incompatible-builtins', rule, {
       code: '[1, 2, 3].includes(i => i === 3)',
       errors: [
         {
-          message: 'Using incompatible method `includes`',
+          message:
+            "Using incompatible method 'includes'. Unsupported browsers: ie false, safari 9",
+          type: 'MemberExpression',
+        },
+      ],
+    },
+    {
+      code: 'Object.setPrototypeOf(obj, prototype);',
+      errors: [
+        {
+          message:
+            "Using incompatible method 'setPrototypeOf'. Unsupported browsers: ie 11, safari 9",
           type: 'MemberExpression',
         },
       ],
