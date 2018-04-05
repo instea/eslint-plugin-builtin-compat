@@ -18,6 +18,7 @@ RuleTester.setDefaultConfig({
   },
   settings: {
     browsers: ['last 3 versions', 'safari >= 8', 'not ie <= 8'],
+    'builtin-compat-ignore': ['startsWith'],
   },
 })
 
@@ -30,6 +31,7 @@ ruleTester.run('no-incompatible-builtins', rule, {
   valid: [
     // give me some code that won't trigger a warning
     '[1, 2, 3].forEach(i => console.log(i))',
+    '"hello world".startsWith("world")',
   ],
 
   invalid: [
