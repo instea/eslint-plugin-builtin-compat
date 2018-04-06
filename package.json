@@ -5,6 +5,10 @@
   "keywords": ["eslint", "eslintplugin", "eslint-plugin"],
   "author": "instea.co",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/instea/eslint-plugin-builtin-compat"
+  },
   "lint-staged": {
     "*.{js,json,css,md}": ["prettier --write", "git add"]
   },
