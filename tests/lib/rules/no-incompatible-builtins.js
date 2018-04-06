@@ -32,6 +32,16 @@ ruleTester.run('no-incompatible-builtins', rule, {
     // give me some code that won't trigger a warning
     '[1, 2, 3].forEach(i => console.log(i))',
     '"hello world".startsWith("world")',
+    'const { count } = this.options',
+    'const count = this.options.count',
+    'startsWith("hello world", "world")',
+    `
+      try {
+        console.log('hello')
+      } catch(e) {
+        console.error(e)
+      }
+    `,
   ],
 
   invalid: [
@@ -41,7 +51,7 @@ ruleTester.run('no-incompatible-builtins', rule, {
         {
           message:
             "Using incompatible method 'includes'. Unsupported browsers: ie false, safari 9",
-          type: 'MemberExpression',
+          type: 'CallExpression',
         },
       ],
     },
@@ -51,7 +61,7 @@ ruleTester.run('no-incompatible-builtins', rule, {
         {
           message:
             "Using incompatible method 'setPrototypeOf'. Unsupported browsers: ie 11, safari 9",
-          type: 'MemberExpression',
+          type: 'CallExpression',
         },
       ],
     },
