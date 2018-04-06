@@ -50,7 +50,7 @@ ruleTester.run('no-incompatible-builtins', rule, {
       errors: [
         {
           message:
-            "Using incompatible method 'includes'. Unsupported browsers: ie false, safari 9",
+            "Using possible incompatible method 'String.includes()'. Unsupported browsers: ie, safari 9",
           type: 'CallExpression',
         },
       ],
@@ -60,7 +60,7 @@ ruleTester.run('no-incompatible-builtins', rule, {
       errors: [
         {
           message:
-            "Using incompatible method 'setPrototypeOf'. Unsupported browsers: ie 11, safari 9",
+            "Using possible incompatible method 'Object.setPrototypeOf()'. Unsupported browsers: ie 11, safari 9",
           type: 'CallExpression',
         },
       ],
